@@ -7,11 +7,10 @@ before_install:
   - sudo mv docker-compose /usr/local/bin/docker-compose
   - sudo chmod +x /usr/local/bin/docker-compose
 install:
-  - docker-compose build
+  - docker build -t flowerpot/travisdockerexample .
 script:
   - docker-compose run web rspec
 before_deploy:
-  - docker build -t flowerpot/travisdockerexample .
   - docker login -e $DOCKER_MAIL -u $DOCKER_USER -p $DOCKER_PASS
 deploy:
   - docker push flowerpot/travisdockerexample
