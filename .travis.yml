@@ -9,7 +9,7 @@ before_install:
 install:
   - docker build -t flowerpot/travisdockerexample .
 script:
-  - docker-compose run web rspec
+  - docker-compose run web rake
 before_deploy:
   - docker login -e $DOCKER_MAIL -u $DOCKER_USER -p $DOCKER_PASS
 deploy:
