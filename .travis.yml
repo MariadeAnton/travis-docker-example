@@ -2,15 +2,9 @@ language: ruby
 sudo: required
 services:
   - docker
-before_install:
-  - curl -L https://github.com/docker/compose/releases/download/1.4.0/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
+
 install:
   - docker build -t flowerpot/travisdockerexample .
 script:
+  - docker -v
   - docker-compose run web rake
-before_deploy:
-  - docker login -e $DOCKER_MAIL -u $DOCKER_USER -p $DOCKER_PASS
-deploy:
-  - docker push flowerpot/travisdockerexample
