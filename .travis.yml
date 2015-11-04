@@ -4,9 +4,8 @@ services:
   - docker
 
 before_install:
-  - sudo apt-get update
   - sudo apt-get purge lxc-docker
-  - apt-get install docker-engine
+  - sudo apt-get install docker-engine
 install:
   - docker -v
   - docker build -t flowerpot/travisdockerexample .
