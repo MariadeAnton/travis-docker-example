@@ -3,8 +3,12 @@ sudo: required
 services:
   - docker
 
+before_install:
+  - sudo apt-get update
+  - sudo apt-get purge lxc-docker
+  - apt-get install docker-engine
 install:
+  - docker -v
   - docker build -t flowerpot/travisdockerexample .
 script:
-  - docker -v
   - docker-compose run web rake
